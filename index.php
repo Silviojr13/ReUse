@@ -20,10 +20,17 @@ include_once 'conexao.php';
             <p class="option">inicio</p>            
             <p class="option">inicio</p>            
         </div>
-        <div class="rightheader">
+        <div class="rightheader1">
             <div class="search">
-                <img src="svg/material-symbols_search.svg" alt="">
+                <img class="lupa" src="svg/material-symbols_search.svg" alt="">
+                <p class="pesquisar_text">Pesquisar</p>
             </div>
+            <img class="carrinho" src="svg/mdi_cart-outline.svg" alt="">
+            <div class="log_user">
+                <img src="svg/mdi_user.svg" alt="" class="user">
+                <p class="log_text">Fazer login</p>
+            </div>
+            
         </div>
     </header>
 
@@ -35,5 +42,15 @@ include_once 'conexao.php';
             <p class="opmenu">Cosmético</p>
         </div>
     </header>
+
+    <div class="Carrossel">
+        <img class="retangle" src="img/Carrossel.png" alt="">
+    </div>
+
+
+    <footer class="footer">
+        <img class="logo_footer" src="svg/Group.svg" alt="">
+    </footer>
+
 </body>
 </html>
