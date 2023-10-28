@@ -1,0 +1,80 @@
+body{
+    width: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; 
+
+}
+
+.header1 {
+    display: flex;
+    position: relative;
+    width: 1440px;
+    height: 77px;
+    background: #daddda;
+    border-bottom: 1px solid black;
+}
+
+.logo {
+    position: relative;
+    margin-top: 16px;
+    margin-left: 256px;
+    margin-right: 30px;
+}
+
+.leftheader1 {
+    display: flex;
+    gap: 32px;
+    
+}
+.option {
+    display: flex;
+    display: inline;
+    margin-top: 26px;
+    
+}
+
+.header2 {
+    display: flex;
+    margin-top: 16px;
+    width: 1440px;
+    height: 56px;
+    background: #83B271;
+    
+}
+
+
+.menu {
+    display: flex;
+    gap: 2;
+    margin-left: 534px;
+}
+
+
+.opmenu {
+    display: flex;
+    margin-left: 22px;
+    display: inline;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .header2 {
+        flex-direction: row; /* Reverte a direção do flex para exibir os elementos em linha */
+        justify-content: center;
+    }
+
+    .menu {
+        margin: 16px 0; /* Margem ajustada */
+    }
+
+    .opmenu {
+        margin: 0 8px; /* Margem ajustada */
+    }
+}
