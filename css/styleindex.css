@@ -2,7 +2,7 @@ body{
     overflow-x: hidden; 
     padding: 0;
     margin: 0;
-     
+    
 
 }
 
@@ -13,10 +13,11 @@ body{
 
 .header1 {
     display: flex;
-    width: 1440px;
+    width: 100%;
     height: 77px;
     background: #dddddd;
     border-bottom: 1px solid black;
+    justify-content: center;
 }
 
 .logo {
@@ -105,9 +106,10 @@ body{
 .header2 {
     display: flex;
     margin-top: 16px;
-    width: 1440px;
+    width: 100%;
     height: 56px;
     background: #83B271;
+    justify-content: center;
     
 }
 
@@ -115,7 +117,6 @@ body{
 .menu {
     display: flex;
     gap: 2;
-    margin-left: 534px;
 }
 
 
@@ -133,7 +134,7 @@ body{
 
 .footer {
     background: #83B271;
-    width: 1440px;
+    width: 100%;
     height: 409px;
 }
 
