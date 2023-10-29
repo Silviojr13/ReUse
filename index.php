@@ -28,7 +28,7 @@ include_once 'conexao.php';
             <img class="carrinho" src="svg/mdi_cart-outline.svg" alt="">
             <div class="log_user">
                 <img src="svg/mdi_user.svg" alt="" class="user">
-                <p class="log_text">Fazer login</p>
+                <a href="login.php" class="none"><p class="log_text" >Fazer login</p></a>
             </div>
             
         </div>

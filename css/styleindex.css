@@ -6,6 +6,11 @@ body{
 
 }
 
+.none {
+    text-decoration: none;
+    color: #000;
+}
+
 .header1 {
     display: flex;
     width: 1440px;
