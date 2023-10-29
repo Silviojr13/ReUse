@@ -7,8 +7,12 @@ include_once 'conexao.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ReUse</title>
+    <link rel="icon" type="image/svg+xml" href="svg/LogoReUse1.svg" sizes="16x16">
     <link rel="stylesheet" href="css/styleindex.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header1">
@@ -36,10 +40,10 @@ include_once 'conexao.php';
 
     <header class="header2">
         <div class="menu">
-            <p class="opmenu">Decoração</p>
-            <p class="opmenu">Móveis</p>
-            <p class="opmenu">Moda</p>
-            <p class="opmenu">Cosmético</p>
+            <p class="opmenu">DECORAÇÃO</p>
+            <p class="opmenu">MÓVEIS</p>
+            <p class="opmenu">MODA</p>
+            <p class="opmenu">COSMÉTICO</p>
         </div>
     </header>
 

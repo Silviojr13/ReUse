@@ -1,9 +1,92 @@
 body {
     margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    margin: auto;
+    height: 100vh;
 }
 
 .box {
-    background-color: green;
-    width: 50px;
-    height: 50px;
+    width: 468px;
+    height: 488px;
+    border-radius: 24px;
+    border: 1px solid #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.44);
+    margin-left: auto;
+    margin-right: auto;
+    backdrop-filter: blur(4px);
 }
+
+.box2 {
+    width: 388px;
+    height: 424px;
+}
+
+.line1{
+    display: flex;
+    gap: 323px;
+}
+
+.line2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 79px;
+}
+
+.text_line2 {
+    display: flex;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 48px;
+}
+
+.box_buttons {
+    display: flex;
+    gap: 13px;
+}
+.Login{
+    display: flex;
+    width: 51px;
+    height: 40px;
+    margin-left: 13px;
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.20);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.text_buttons {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    
+}
+
+.Registro {
+    display: flex;
+    width: 68px;
+    height: 40px;   
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.40);
+}
+
