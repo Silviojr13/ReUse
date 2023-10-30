@@ -19,7 +19,7 @@ include_once 'conexao.php';
         
         <div class="leftheader1">
             <img class="logo" src="svg/LogoReUse1.svg" alt="">
-            <p class="option">inicio</p>            
+            <p class="option">Início</p>            
             <p class="option">inicio</p>            
             <p class="option">inicio</p>            
             <p class="option">inicio</p>            
@@ -44,17 +44,63 @@ include_once 'conexao.php';
             <p class="opmenu">MÓVEIS</p>
             <p class="opmenu">MODA</p>
             <p class="opmenu">COSMÉTICO</p>
+            <p class="opmenu">UTILIZÁVEIS</p>
         </div>
     </header>
 
-    <div class="Carrossel">
-        <img class="retangle" src="img/Carrossel.png" alt="">
+    <div class="slider">
+        <div class="slides">
+            <!-- Radio Buttons -->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <!-- FIM Radio Buttons -->
+
+            <!-- Imagens Carrossel -->
+            
+                <div class="slide first">
+                    <img src="img/slider1.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/slider2.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/slider3.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/slider4.png" alt="">
+                </div>
+            
+
+            <!-- FIM Imagens Carrossel -->
+
+            <!-- Navigation auto -->
+            <div class="navigation-auto manual-navigation">
+                <label for="radio1" class="autobtn autobtn1 manual-btn"></label>
+                <label for="radio2" class="autobtn autobtn2 manual-btn"></label>
+                <label for="radio3" class="autobtn autobtn3 manual-btn"></label>
+                <label for="radio4" class="autobtn autobtn4 manual-btn"></label>
+            </div>
+        </div>
+
+
     </div>
+
+
+
+
+
+
+
 
 
     <footer class="footer">
         <img class="logo_footer" src="svg/Group.svg" alt="">
     </footer>
 
+<!-- import script -->
+
+    <script src="js/script.js"></script>
 </body>
 </html>

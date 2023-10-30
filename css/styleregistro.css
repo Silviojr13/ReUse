@@ -25,7 +25,7 @@ input:focus {
 
 .box {
     width: 468px;
-    height: 488px;
+    height: 574px;
     border-radius: 24px;
     border: 1px solid #FFF;
     display: flex;
@@ -40,7 +40,7 @@ input:focus {
 
 .box2 {
     width: 388px;
-    height: 424px;
+    height: 502px;
 }
 
 .line1{
@@ -52,7 +52,7 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 79px;
+    gap: 65px;
 }
 
 .text_line2 {
@@ -75,7 +75,7 @@ input:focus {
     height: 40px;
     margin-left: 13px;
     border-radius: 24px;
-    background: rgba(0, 0, 0, 0.20);
+    background: rgba(0, 0, 0, 0.40);
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -97,7 +97,7 @@ input:focus {
     width: 68px;
     height: 40px;   
     border-radius: 24px;
-    background: rgba(0, 0, 0, 0.40);
+    background: rgba(0, 0, 0, 0.20);
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -159,6 +159,8 @@ input:focus {
 
 .ntc {
     display: flex;
+    position: absolute;
+    top: 458px;
 }
 
 a {
@@ -192,7 +194,7 @@ a {
 
 .voltar{
     position: absolute;
-    bottom: 24px;
+    bottom: 35px;
     color: #FFF;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;

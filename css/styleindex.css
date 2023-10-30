@@ -1,5 +1,5 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body{
     overflow-x: hidden; 
@@ -18,9 +18,10 @@ body{
     display: flex;
     width: 100%;
     height: 77px;
-    background: #dddddd;
+    background: #F7F7F7;
     border-bottom: 1px solid black;
     justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.50);
 }
 
 .logo {
@@ -38,6 +39,7 @@ body{
     display: inline;
     margin-top: 26px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
 .leftheader1 {
@@ -114,6 +116,7 @@ body{
     height: 56px;
     background: #83B271;
     justify-content: center;
+    margin-bottom: 40px;
     
 }
 
@@ -130,6 +133,7 @@ body{
     display: inline;
     font-family: 'Roboto', sans-serif;
     color: white;
+    font-weight: 600;
 }
 
 
@@ -149,6 +153,111 @@ body{
     margin-top: 77px;
 }
 
+.slider {
+    margin: 0 auto;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
 
+}
+
+.slides {
+    width: 400%;
+    width: 400%;
+    display: flex;
+    transition: margin-left 3s
+}
+
+.slides input {
+    display: none;
+}
+
+.slide{
+    width: 25%;
+    position: relative;
+}
+
+.slide img{
+    width: 100%;
+}
+
+.manual-navigation{
+    position: absolute;
+    width: 100%;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+    
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+
+.manual-btn:hover{
+    background-color: #83B271;
+}
+
+
+
+#radio:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left:-25%;
+}
+
+#radio3:checked ~ .first{
+    margin-left:-50%;
+}
+
+#radio4:checked ~ .first{
+    margin-left:-75%;
+}
+
+.navigation-auto div{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.navigation-auto{
+    position: absolute;
+    width: 100%;
+    margin-top: 28%;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .autobtn1{
+    background-color: #83B271;
+}
+
+#radio2:checked ~ .navigation-auto .autobtn2{
+    background-color: #83B271;
+}
+
+#radio3:checked ~ .navigation-auto .autobtn3{
+    background-color: #83B271;
+}
+
+#radio4:checked ~ .navigation-auto .autobtn4{
+    background-color: #83B271;
+}
 
 
