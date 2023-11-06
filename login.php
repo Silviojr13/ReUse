@@ -1,3 +1,25 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include_once 'php/conexao.php';
+
+    $email = $_POST['email'];
+    $senha = md5($_POST['senha']);
+
+    $sql = "SELECT nome_usuario FROM tb_login WHERE email_usuario = '$email' AND senha_usuario = '$senha'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        $nome_usuario = $row['nome_usuario'];
+        // Redirecione para index.php com o nome_usuario na URL
+        header("Location: php/index.php?nome_usuario=" . urlencode($nome_usuario));
+        exit();
+    } else {
+        echo "Credenciais inválidas";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +33,7 @@
             background-image: url('svg/image 3.svg');
             background-size: cover;
             background-repeat: no-repeat;
-            }
+        }
     </style>
 </head>
 <body>
@@ -25,7 +47,6 @@
                 </div>
 
                 <div class="line2">
-
                     <p class="text_line2">Realizar Login</p>
                     <div class="box_buttons">
                         <a href="login.php" class="Login">
@@ -39,32 +60,31 @@
                 </div>
 
                 <div class="line3">
-
-                    <div class="campo_email">
-                        <p class="text_email">Email</p>
-                        <input type="text" class="email">
-                    </div>
-                    
-                    <div class="campo_senha">
-                        <p class="text_senha">Senha</p>
-                        <input type="text" class="senha">
-                    </div>
-
+                    <form method="post">
+                        <div class="campo_email">
+                            <p class="text_email">Email</p>
+                            <input type="text" name="email" class="email">
+                        </div>
+                        
+                        <div class="campo_senha">
+                            <p class="text_senha">Senha</p>
+                            <input type="password" name="senha" class="senha">
+                        </div>
+                        
+                        <button class="entrar" type="submit">ENTRAR</button>
+                    </form>
                 </div>
 
                 <div class="line4">
-
-                    <a href="index.php"><button class="entrar">ENTRAR</button></a>
-                    
                     <div class="ntc">
                         <p class="naotc">Não tem conta?</p>
-                        <a href="registro.php" ><p class="rga">Registre agora</p></a>
+                        <a href="registro.php"><p class="rga">Registre agora</p></a>
                     </div>
 
-                    <a href="index.php" ><p class="voltar">Voltar para página inicial</p></a>
+                    <a href="index.php"><p class="voltar">Voltar para página inicial</p></a>
                 </div>
              </div>
         </div>
-        </div>
+    </div>
 </body>
 </html>

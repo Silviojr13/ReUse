@@ -27,12 +27,12 @@ input:focus {
     width: 468px;
     height: 574px;
     border-radius: 24px;
-    border: 1px solid #FFF;
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.44);
+    background: rgba(255, 255, 255, 0.28);
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(4px);
@@ -57,7 +57,7 @@ input:focus {
 
 .text_line2 {
     display: flex;
-    color: #FFF;
+    color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 26px;
     font-style: normal;
@@ -120,7 +120,7 @@ input:focus {
     position: absolute;
     left: 0;
     bottom: 13px;
-    color: #FFF;
+    color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -133,7 +133,7 @@ input:focus {
     padding: 10px;
     width: 100%;
     border: none;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid black;
 }
 
 .entrar {
@@ -165,11 +165,11 @@ input:focus {
 
 a {
     text-decoration: none;
-    color: #ffffff;
+    color: white;
 }
 
 .naotc {
-    color: #FFF;
+    color: black;
 
     font-feature-settings: 'clig' off, 'liga' off;
     /* Paragrafo */
@@ -183,7 +183,7 @@ a {
 
 .rga {
     display: flex;
-    color: #FFF;
+    color: black;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;
     font-size: 16px;
@@ -195,7 +195,7 @@ a {
 .voltar{
     position: absolute;
     bottom: 35px;
-    color: #FFF;
+    color: #000000;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;

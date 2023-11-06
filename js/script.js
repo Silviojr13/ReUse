@@ -1,24 +1,79 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const radioButtons = document.querySelectorAll("input[type='radio']");
-    let currentSlide = 0; // Acompanha o slide atual
+//- - - - - - - - - - - - - - -  - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// código responsavel por conduzir o carrocel em index.html
 
-    // Função para avançar o slide automaticamente
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % radioButtons.length;
-        radioButtons[currentSlide].click();
+const manualButtons = document.querySelectorAll(".manual-btn"); // Selecione os botões usando a classe correspondente
+const delayBetweenClicks = 5000; // Tempo em milissegundos entre os cliques (1 segundo neste exemplo)
+const delayBeforeLooping = 1000; // Tempo em milissegundos antes de retornar ao primeiro botão (5 segundos neste exemplo)
+let currentIndex = 0;
+
+function clickSequentially() {
+    if (currentIndex < manualButtons.length) {
+        manualButtons[currentIndex].click();
+        currentIndex++;
+    } else {
+        currentIndex = 0;
+        setTimeout(clickSequentially, delayBeforeLooping);
+        return;
     }
+    setTimeout(clickSequentially, delayBetweenClicks);
+}
 
-    // Configurar um temporizador para avançar os slides automaticamente
-    const slideInterval = setInterval(nextSlide, 5000); // Muda a cada 3 segundos (ajuste conforme necessário)
+// Chame a função para iniciar os cliques sequenciais em loop
+clickSequentially();
 
-    // Parar o temporizador quando o mouse estiver sobre o carrossel
-    const slider = document.querySelector(".slider");
-    slider.addEventListener("mouseenter", function() {
-        clearInterval(slideInterval);
+
+
+document.getElementById('carrinho').addEventListener('click', function() {
+    var sidebar = document.createElement('div');
+    sidebar.style.position = 'fixed';
+    sidebar.style.width = '300px';
+    sidebar.style.height = '100%';
+    sidebar.style.top = '0';
+    sidebar.style.right = '0';
+    sidebar.style.backgroundColor = 'grey';
+    sidebar.style.padding = '20px';
+    sidebar.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+
+    var header = document.createElement('h2');
+    header.textContent = 'Seu Carrinho';
+    header.style.marginBottom = '20px';
+
+    var closeButton = document.createElement('button');
+    closeButton.textContent = 'Fechar';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.backgroundColor = '#f44336';
+    closeButton.style.color = '#fff';
+    closeButton.style.border = 'none';
+    closeButton.style.padding = '5px 10px';
+    closeButton.style.borderRadius = '50%';
+    closeButton.style.cursor = 'pointer';
+    closeButton.addEventListener('click', function() {
+        document.body.removeChild(sidebar);
     });
 
-    // Retomar o temporizador quando o mouse sair do carrossel
-    slider.addEventListener("mouseleave", function() {
-        slideInterval = setInterval(nextSlide, 5000); // Muda a cada 3 segundos (ajuste conforme necessário)
-    });
+    sidebar.appendChild(header);
+    sidebar.appendChild(closeButton);
+    document.body.appendChild(sidebar);
+});
+
+//- - - - - - - - - - - - - - -  - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// chama o get do usuario de index.php para index.html
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona o elemento onde deseja inserir os dados do usuário
+    var userInfoDiv = document.getElementById("user-info");
+
+    // Obtém o nome do usuário da URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var nomeUsuario = urlParams.get("nome_usuario");
+
+    if (nomeUsuario) {
+        // Exibe o nome do usuário
+        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text">' + nomeUsuario + '</p>';
+    } else {
+        // Caso não haja nome de usuário na URL, exibe "Fazer login"
+        userInfoDiv.innerHTML = '<a href="login.php"><img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text">Fazer login</p></a>';
+    }
 });
