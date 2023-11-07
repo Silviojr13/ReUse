@@ -71,9 +71,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (nomeUsuario) {
         // Exibe o nome do usuário
-        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text">' + nomeUsuario + '</p>';
+        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" >' + nomeUsuario + '</p>';
     } else {
         // Caso não haja nome de usuário na URL, exibe "Fazer login"
         userInfoDiv.innerHTML = '<a href="login.php"><img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text">Fazer login</p></a>';
     }
 });
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------
+//script para logout
+
+// Obtenha referências aos elementos do botão e do dropdown
+var dropdownButton = document.getElementById('dropdownButton');
+var dropdown = document.getElementById('myDropdown');
+
+// Adicione um ouvinte de evento ao botão para alternar a exibição do dropdown
+dropdownButton.addEventListener('click', function() {
+    if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+    } else {
+        dropdown.style.display = 'block';
+    }
+});
+
+// Feche o dropdown se o usuário clicar fora dele
+window.addEventListener('click', function(event) {
+    if (event.target !== dropdownButton) {
+        dropdown.style.display = 'none';
+    }
+});
+
+
+
+
+
+

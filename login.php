@@ -1,24 +1,4 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once 'php/conexao.php';
 
-    $email = $_POST['email'];
-    $senha = md5($_POST['senha']);
-
-    $sql = "SELECT nome_usuario FROM tb_login WHERE email_usuario = '$email' AND senha_usuario = '$senha'";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result && mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        $nome_usuario = $row['nome_usuario'];
-        // Redirecione para index.php com o nome_usuario na URL
-        header("Location: php/index.php?nome_usuario=" . urlencode($nome_usuario));
-        exit();
-    } else {
-        echo "Credenciais inválidas";
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              <div class="box2">
 
                 <div class="line1">
-                    <a href="index.php"><img src="svg/ep_arrow-up.svg" alt=""></a>
+                    <a href="index.html"><img src="svg/ep_arrow-up.svg" alt=""></a>
                     <img src="svg/Logo1.svg" alt="">
                 </div>
 
@@ -60,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="line3">
-                    <form method="post">
+                    <form id="login-form">
                         <div class="campo_email">
                             <p class="text_email">Email</p>
                             <input type="text" name="email" class="email">
@@ -81,10 +61,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="registro.php"><p class="rga">Registre agora</p></a>
                     </div>
 
-                    <a href="index.php"><p class="voltar">Voltar para página inicial</p></a>
+                    <a href="index.html"><p class="voltar">Voltar para página inicial</p></a>
                 </div>
              </div>
         </div>
     </div>
+
+    <script>
+        // JavaScript para lidar com o formulário de login
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById("login-form");
+            
+            loginForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // Impede o envio do formulário padrão
+                
+                const formData = new FormData(loginForm);
+                fetch('processa_login.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Redirecione o usuário para a página de login bem-sucedida
+                        window.location.href = `php/index.php?nome_usuario=${data.nome_usuario}`;
+                    } else {
+                        // Exiba uma mensagem de erro ao usuário
+                        alert("Credenciais inválidas");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação: ', error);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
