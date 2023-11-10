@@ -6,16 +6,28 @@ include('conexao.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome_usuario'];
     $email = $_POST['email_usuario'];
-    $senha = md5($_POST['senha_usuario']); // Senha é armazenada em MD5
+    $senha = $_POST['senha_usuario']; // Não é mais necessário usar md5
 
-    // Inserir os dados na tabela
-    $sql = "INSERT INTO tb_login (id_perfil, nome_usuario, email_usuario, senha_usuario) VALUES (5,'$nome', '$email', '$senha')";
+    // Hash da senha usando password_hash
+    $hash_senha = password_hash($senha, PASSWORD_DEFAULT);
 
-    if (mysqli_query($conn, $sql)) {
+    // Inserir os dados na tabela usando prepared statements
+    $sql = "INSERT INTO usuario (id_perfil, nome_usuario, email_usuario, senha_usuario) VALUES (4, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    
+    // Bind dos parâmetros
+    $stmt->bind_param("sss", $nome, $email, $hash_senha);
+
+    // Executar a query
+    if ($stmt->execute()) {
         echo "<p style='color: white;'>Registro realizado com sucesso!</p>";
+        header("Location: login.php");
     } else {
-        echo "Erro ao registrar: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Erro ao registrar: " . $stmt->error;
     }
+
+    // Fechar a instrução preparada
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-image: url('svg/image 3.svg');
             background-size: cover;
             background-repeat: no-repeat;
-            filter: blur(2px); /* Altere o valor para ajustar o nível de desfoque desejado */
             position: fixed;
             top: 0;
             left: 0;

@@ -66,17 +66,19 @@ document.addEventListener("DOMContentLoaded", function() {
     var userInfoDiv = document.getElementById("user-info");
 
     // Obtém o nome do usuário da URL
-    var urlParams = new URLSearchParams(window.location.search);
+    var urlParams = new URLSearchParams(window.location.search); 
     var nomeUsuario = urlParams.get("nome_usuario");
 
     if (nomeUsuario) {
-        // Exibe o nome do usuário
-        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" >' + nomeUsuario + '</p>';
+        // Exibe o nome do usuário com estilos inline
+        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" style="color: inherit; text-decoration: none;">' + nomeUsuario + '</p>';
     } else {
         // Caso não haja nome de usuário na URL, exibe "Fazer login"
-        userInfoDiv.innerHTML = '<a href="login.php"><img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text">Fazer login</p></a>';
+        userInfoDiv.innerHTML = '<a href="login.php"><img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" style="color: inherit; text-decoration: none;">Fazer login</p></a>';
     }
 });
+
+
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------

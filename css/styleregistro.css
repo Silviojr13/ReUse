@@ -27,7 +27,7 @@ input:focus {
     width: 468px;
     height: 574px;
     border-radius: 24px;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,7 +57,7 @@ input:focus {
 
 .text_line2 {
     display: flex;
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: 'Roboto', sans-serif;
     font-size: 26px;
     font-style: normal;
@@ -75,7 +75,7 @@ input:focus {
     height: 40px;
     margin-left: 13px;
     border-radius: 24px;
-    background: rgba(0, 0, 0, 0.40);
+    background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -97,7 +97,7 @@ input:focus {
     width: 68px;
     height: 40px;   
     border-radius: 24px;
-    background: rgba(0, 0, 0, 0.20);
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -120,7 +120,7 @@ input:focus {
     position: absolute;
     left: 0;
     bottom: 13px;
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -133,7 +133,7 @@ input:focus {
     padding: 10px;
     width: 100%;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 .entrar {
@@ -142,7 +142,7 @@ input:focus {
     height: 56px;
     line-height: 56px; 
     border-radius: 24px;
-    background: rgba(0, 0, 0, 0.50);
+    background: rgba(255, 255, 255, 0.5);
     text-align: center; 
     text-decoration: none; 
     color: white; 
@@ -169,7 +169,7 @@ a {
 }
 
 .naotc {
-    color: black;
+    color: rgb(255, 255, 255);
 
     font-feature-settings: 'clig' off, 'liga' off;
     /* Paragrafo */
@@ -183,7 +183,7 @@ a {
 
 .rga {
     display: flex;
-    color: black;
+    color: rgb(255, 255, 255);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Roboto;
     font-size: 16px;
@@ -195,7 +195,7 @@ a {
 .voltar{
     position: absolute;
     bottom: 35px;
-    color: #000000;
+    color: #ffffff;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;

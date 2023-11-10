@@ -1,4 +1,67 @@
+<?php
+// Inclua o arquivo de conexão
+include("conexao.php");
 
+// Inicializa a variável de erro
+$erro = '';
+
+// Verificar se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obter dados do formulário
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
+
+    // Consultar o banco de dados para verificar o login usando prepared statements
+    $sql = "SELECT * FROM usuario WHERE email_usuario = ? LIMIT 1";
+    $stmt = $conn->prepare($sql);
+
+    // Verificar se a preparação da consulta falhou
+    if (!$stmt) {
+        die("Erro na preparação da consulta: " . $conn->error);
+    }
+
+    $stmt->bind_param("s", $email);
+
+    // Verificar se a vinculação dos parâmetros falhou
+    if (!$stmt) {
+        die("Erro na vinculação de parâmetros: " . $stmt->error);
+    }
+
+    $stmt->execute();
+
+    // Verificar se a execução da consulta falhou
+    if (!$stmt) {
+        die("Erro na execução da consulta: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+
+    // Verificar se encontrou um usuário correspondente
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
+
+        // Verificar a senha usando password_verify
+        if (password_verify($senha, $usuario['senha_usuario'])) {
+            // Login bem-sucedido
+            echo "Login bem-sucedido!";
+            // Você pode redirecionar para outra página se desejar
+            header("Location: index.php?nome_usuario=" . urlencode($usuario['nome_usuario']));
+        } else {
+            // Senha incorreta
+            $erro = "Login falhou. Verifique suas credenciais.";
+        }
+    } else {
+        // Usuário não encontrado
+        $erro = "Login falhou. Verifique suas credenciais.";
+    }
+
+    // Fechar a instrução preparada
+    $stmt->close();
+}
+
+// Fechar a conexão com o banco de dados
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +82,7 @@
 <body>
     <div class="container">
         <div class="box">
-             <div class="box2">
-
+            <div class="box2">
                 <div class="line1">
                     <a href="index.html"><img src="svg/ep_arrow-up.svg" alt=""></a>
                     <img src="svg/Logo1.svg" alt="">
@@ -40,19 +102,26 @@
                 </div>
 
                 <div class="line3">
-                    <form id="login-form">
+                    <form method="POST">
                         <div class="campo_email">
                             <p class="text_email">Email</p>
                             <input type="text" name="email" class="email">
                         </div>
-                        
+
                         <div class="campo_senha">
                             <p class="text_senha">Senha</p>
                             <input type="password" name="senha" class="senha">
                         </div>
-                        
+
                         <button class="entrar" type="submit">ENTRAR</button>
                     </form>
+
+                    <?php
+                        // Exibir mensagem de erro (se houver)
+                        if (!empty($erro)) {
+                            echo "<p style='color: red;'>$erro</p>";
+                        }
+                    ?>
                 </div>
 
                 <div class="line4">
@@ -63,38 +132,8 @@
 
                     <a href="index.html"><p class="voltar">Voltar para página inicial</p></a>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        // JavaScript para lidar com o formulário de login
-        document.addEventListener("DOMContentLoaded", function() {
-            const loginForm = document.getElementById("login-form");
-            
-            loginForm.addEventListener("submit", function(event) {
-                event.preventDefault(); // Impede o envio do formulário padrão
-                
-                const formData = new FormData(loginForm);
-                fetch('processa_login.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Redirecione o usuário para a página de login bem-sucedida
-                        window.location.href = `php/index.php?nome_usuario=${data.nome_usuario}`;
-                    } else {
-                        // Exiba uma mensagem de erro ao usuário
-                        alert("Credenciais inválidas");
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro na solicitação: ', error);
-                });
-            });
-        });
-    </script>
 </body>
 </html>

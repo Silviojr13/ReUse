@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST["submit"])) {
-    $targetDirectory = "img/"; // Diretório onde a imagem será armazenada
+    $targetDirectory = "../img/"; // Diretório onde a imagem será armazenada
     $targetFile = $targetDirectory . basename($_FILES["imagem"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));

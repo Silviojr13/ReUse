@@ -1,3 +1,9 @@
+<?php
+// Obtém o nome do usuário da URL
+$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
+
+
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +40,23 @@
             <!--icone de usuario-->
             <div class="log_user">
                 <a href="javascript:void(0);" id="dropdownButton">
-                    <p class="log_text" id="user-info"></p>
+                    <?php
+                        if ($nomeUsuario) {
+                            
+                            
+                            echo '<img src="svg/mdi_user.svg" alt="" class="user">
+                                      <p class="log_text">'
+                                       . htmlspecialchars($nomeUsuario) . 
+                                      '</p>';
+
+                        } else {
+                            // Caso não haja nome de usuário na URL, exibe "Fazer login"
+                            echo '<a href="login.php">
+                                      <img src="svg/mdi_user.svg" alt="" class="user">
+                                      <p class="log_text" >Fazer login</p>
+                                  </a>';
+                        }
+                    ?>
                 </a>
             </div>
 
@@ -95,6 +117,8 @@
 
 
     </div>
+<!--========================================================================================================-->
+<!-- QUERO que tenha a baixo desta linha os produtos/cards-->
 
 
 
@@ -102,8 +126,7 @@
 
 
 
-
-
+<!-- =======================================================================================================-->
     <footer class="footer">
         <img class="logo_footer" src="svg/Group.svg" alt="">
     </footer>
@@ -112,4 +135,4 @@
 
     <script src="js/script.js"></script>
 </body>
-</html>
+</html> 
