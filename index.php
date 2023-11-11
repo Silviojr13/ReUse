@@ -24,7 +24,7 @@ $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
             <p class="option">Início</p>            
             <p class="option">inicio</p>            
             <p class="option">inicio</p>            
-            <p class="option" >carrinho</p>            
+            <a href="registrar_prod.php?id_estoque=1" class="a opition"><p>registrar produto</p></a>            
         </div>
         <div class="rightheader1">
             <div class="search">
@@ -39,21 +39,17 @@ $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
 
             <!--icone de usuario-->
             <div class="log_user">
-                <a href="javascript:void(0);" id="dropdownButton">
                     <?php
                         if ($nomeUsuario) {
-                            
-                            
-                            echo '<img src="svg/mdi_user.svg" alt="" class="user">
-                                      <p class="log_text">'
-                                       . htmlspecialchars($nomeUsuario) . 
-                                      '</p>';
+
+                            echo '  <a href="javascript:void(0);" id="dropdownButton" class="log_text">
+                                        <img src="svg/mdi_user.svg" alt="" class="user">' . htmlspecialchars($nomeUsuario) . '
+                                    </a>';
 
                         } else {
                             // Caso não haja nome de usuário na URL, exibe "Fazer login"
-                            echo '<a href="login.php">
-                                      <img src="svg/mdi_user.svg" alt="" class="user">
-                                      <p class="log_text" >Fazer login</p>
+                            echo '<a href="login.php" class="log_text">
+                                      <img src="svg/mdi_user.svg" alt="" class="user">Fazer Login
                                   </a>';
                         }
                     ?>
@@ -62,9 +58,12 @@ $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
 
             <!-- Adicione a estrutura do dropdown (inicialmente oculta) -->
             <div class="dropdown" id="myDropdown">
-                <a href="logout.php">Sair</a>
-                <!-- Adicione mais opções, se necessário -->
+                <a href="logout.php">
+                    <img src="svg/Vector.svg" alt="Icone de logout">
+                    Fazer Logout
+                </a>
             </div>
+
             
         </div>
     </header>

@@ -73,8 +73,12 @@ $conn->close();
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css">
     <style>
         body {
-            background-image: url('svg/image 3.svg');
+            position: relative;
+            height:100vh;
+            width:100%;
+            background-image: url('img/selva.jpg');
             background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
         }
     </style>

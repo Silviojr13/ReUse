@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+a {
+    color: inherit;
+    text-decoration:none;
+}
+input
+.header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 77px;
+    z-index: 100;
+    padding: 0 20px;
+    background: #83B271;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+.hed {
+    max-width: 1440px;
+    width: 100%;
+    align-items: center;
+    
+}
+.voltar {
+    position: relative;
+    margin-left: 3%;
+    font-size: 35px;
+    color: #fff;
+    bottom: 3px;
+}
+.logo {
+    margin-top: 0.7%;
+    margin-left: 10%;
+    width: 10%;
+    height: 5%;
+    
+}
+.textum {
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    color: #fff;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 48px;
+}
+.formulario {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    z-index: 101;
+}
+.form {
+    position: absolute;
+    padding-bottom: 10%;
+}
+.button {
+    width: 649px;
+    height: 40px;
+    border-radius: 24px;
+    background: #656565;
+
+}
+
+/* estilo do quadrado da imagem inserida */
+
+
+
+.imagem-preview {
+    max-width: 200px; 
+    max-height: 200px; 
+    border: 1px solid #ccc; 
+    margin-top: 10px; 
+    overflow: hidden; 
+}
+
+.imagem-preview img {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+}
