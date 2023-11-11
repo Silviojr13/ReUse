@@ -104,8 +104,68 @@ window.addEventListener('click', function(event) {
     }
 });
 
+/* Cards dos produtos registrados */
 
 
 
+window.onload = async function () {
+    var card = await fetch ("card.php", {
+        method: "GET"
+    });
 
+    var dados = await card.json();
+
+    for (var i = 0; i < dados.length; i++){
+        var conteudo =
+        `<section class="container-cards">
+
+            <div class="card-produto">
+                <div class="card-prod-imagem">
+                    <img src="${dados[i].caminhoimagem}">
+                </div>
+                <div class="card-prod-titulo">
+                    ${dados[i].descricao}
+                </div>
+                <!--<div class="card-prod-periodo">${dados[i].periodo}</div>-->
+                <div class="card-prod-valor">R$${dados[i].preco}</div>
+                <div class="card-prod-add">
+                    <button onclick="adicionarProduto(${dados[i].id_cards})" data-id-cards="${dados[i].id_cards}">Adicionar
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>`;
+
+        document.getElementById('cards').innerHTML += conteudo; // atualiza no html
+
+    }
+}  
+
+
+
+/* Carrinho a baixo */
+
+// ADICIONA OS PRODUTOS NO CARRINHO
+
+async function adicionarProduto(idCards) {
+    // Define o idEstudante com o valor desejado, por exemplo, 1.
+    var idCliente = 1;
+
+    // Envia uma solicitação para o servidor para inserir o card no carrinho.
+    var response = await fetch("adicionar_ao_carrinho.php", {
+        method: "POST",
+        body: JSON.stringify({ id_cards: idCards, id_cliente: idCliente }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (response.status === 200) {
+        // Atualize a interface do usuário para refletir a adição ao carrinho, se necessário.
+        alert("Card adicionado ao carrinho com sucesso!");
+    } else {
+        alert("Falha ao adicionar o card ao carrinho.");
+    }
+}
 

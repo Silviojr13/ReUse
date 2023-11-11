@@ -10,7 +10,7 @@ body {
 
 input:focus {
     outline: none; 
-    color: #FFF;
+    
 }
 
 .container {
@@ -200,4 +200,4 @@ a {
     font-weight: 700;
     line-height: 24px; 
     
-}
+} 

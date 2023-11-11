@@ -9,7 +9,10 @@ a {
     color: inherit;
     text-decoration:none;
 }
-input
+input:focus {
+    outline: none; 
+    
+}
 .header {
     display: flex;
     position: fixed;
@@ -24,24 +27,26 @@ input
     align-items: center;
 }
 .hed {
+    display: flex;
     max-width: 1440px;
     width: 100%;
     align-items: center;
-    
 }
 .voltar {
     position: relative;
     margin-left: 3%;
     font-size: 35px;
     color: #fff;
-    bottom: 3px;
 }
 .logo {
     margin-top: 0.7%;
-    margin-left: 10%;
-    width: 10%;
-    height: 5%;
-    
+    margin-left: 13%;
+    display: flex;
+    width: 167.961px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
 }
 .textum {
     position: absolute;
@@ -54,18 +59,103 @@ input
     line-height: 48px;
 }
 .formulario {
+    display: flex;
     position: absolute;
     top: 20%;
     left: 20%;
     z-index: 101;
 }
 .form {
-    position: absolute;
-    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
 }
+.box {
+    display: flex;
+    width: 649px;
+    
+}
+.box_left {
+    display: flex;
+    max-width: 304px;
+    width: 100%;
+    flex-direction: column;
+}
+.box_center {
+    margin-left: 2%;
+}
+.box_right {
+    margin-left: 2%;
+}
+.input_nome,
+.input_descricao,
+.input_preco,
+.input_date,
+.input_quanti {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.input_nome input {
+    width: 304px;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
+}
+.input_descricao textarea {
+    width: 304px;
+    height: 112px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.input_preco input {
+    width: 125px;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
+    padding-right: 10px;
+}
+.input_date input {
+    width: 125px;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
+    padding-right: 10px;
+}
+.input_quanti input {
+    width: 172px;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
+    padding-right: 10px;
+    margin-bottom: 8%;
+}
+.input_cat {
+    width: 172px;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    background: #D9D9D9;
+    padding-left: 5px;
+    padding-right: 10px;
+    
+}
+
 .button {
     width: 649px;
     height: 40px;
+    border: none;
     border-radius: 24px;
     background: #656565;
 

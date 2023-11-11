@@ -2,7 +2,7 @@
 // Obtém o nome do usuário da URL
 $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
 
-
+$nome = $nomeUsuario;
 ?>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@ $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
             <p class="option">Início</p>            
             <p class="option">inicio</p>            
             <p class="option">inicio</p>            
-            <a href="registrar_prod.php?id_estoque=1" class="a opition"><p>registrar produto</p></a>            
+            <a href="registrar_prod.php?id_estoque=1&nome_usuario=<?php echo $nome; ?>" class="a opition"><p>registrar produto</p></a>            
         </div>
         <div class="rightheader1">
             <div class="search">
@@ -121,7 +121,7 @@ $nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
 
 
 
-
+<div id="cards"></div>
 
 
 

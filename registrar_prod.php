@@ -1,6 +1,6 @@
 <?php
-// Inclua o arquivo de conexão com o banco de dados
 include_once 'conexao.php';
+
 $id_estoque = $_GET['id_estoque'] ?? null;
 
 // Verifique se a conexão com o banco de dados foi estabelecida no arquivo 'conexao.php'
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sqlVerificaImagem);
     
     if(mysqli_num_rows($result) > 0) {
-        echo "Erro: Esta imagem já foi enviada.";
+        echo "<script>alert('Erro: Esta imagem já foi enviada.');</script>";
     } else {
         // Insira no banco de dados
         $sql = "INSERT INTO produto (id_estoque, id_categoria, id_disponibilidade, nome, 
@@ -38,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         '$preco','$quantidadeestoque','$datafabricacao','$caminhoImagem')";
 
         if (mysqli_query($conn, $sql)) {
-            echo "Produto registrado com sucesso!";
+            echo "<script>alert('Produto registrado com sucesso!');</script>";
         } else {
-            echo "Erro ao registrar o produto: " . mysqli_error($conn);
+            echo "<script>alert(1Erro ao registrar o produto:" . mysqli_error($conn)."');</script>";
         }
     }
 }
@@ -48,7 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Feche a conexão com o banco de dados
 mysqli_close($conn);
 ?>
+<?php
 
+$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : 'Usuário';
+
+?>
 <!DOCTYPE html>
 
 <!-- Começo da tela de registro de produtos -->
@@ -71,7 +75,7 @@ mysqli_close($conn);
     
     <header class="header">
         <nav class="hed">
-            <a href="index.php" class="voltar"><i class="uil uil-angle-left voltar"></i></a>
+            <a href="index.php?nome_usuario=<?php echo $nomeUsuario; ?>" class="voltar"><i class="uil uil-angle-left voltar"></i></a>
             <img class="logo" src="svg/Group.svg" alt="">
             <h1 class="textum">Adicionar Produto</h1>
         </nav>
@@ -81,43 +85,63 @@ mysqli_close($conn);
 
     
     <nav class="formulario">
-        <form class="form" method="POST" enctype="multipart/form-data">
+        <form class="form" method="POST">
             <!-- Adicione o atributo enctype para permitir o envio de arquivos -->
-            <label for="nome_produto" calss="lab_np">Nome do Produto:</label>
-            <input type="text" id="nome_produto" name="nome_produto" required><br><br>
-            
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" required></textarea><br><br>
-            
-            <label for="preco">Preço:</label>
-            <input type="number" id="preco" name="preco" step="0.01" required><br><br>
+            <div class="box">
+                <div class="box_left">
+                    <div class="input_nome">
+                        <label for="nome_produto" >Nome do Produto:</label>
+                        <input type="text" calss="nome"  id="nome_produto" name="nome_produto" placeholder="Digite o nome do produto" required><br><br>
+                    </div>
 
-            <label for="quantidadeestoque">Quantidade:</label>
-            <input type="number" id="quantidadeestoque" name="quantidadeestoque" step="0.01" required><br><br>
+                    <div class="input_descricao">
+                        <label for="descricao" class="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" placeholder="Digite a descrição do seu produto" required></textarea><br><br>
+                    </div>
+                </div>
 
-            <label for="datafabricacao">Data de Fabricação:</label>
-            <input type="date" id="datafabricacao" name="datafabricacao" required><br><br>
+                <div class="box_center">
+                    <div class="input_preco">
+                        <label for="preco">Preço:</label>
+                        <input type="number" id="preco" name="preco" step="0.01" placeholder="R$ 0" required><br><br>
+                    </div>
 
-            <label for="id_categoria">Categoria:</label>
-            <select id="id_categoria" name="id_categoria" required>
-                <option value="">escolha uma categoria</option>
-                <option value="1">Eletrônicos</option>
-                <option value="2">Roupas</option>
-                <option value="3">Móveis</option>
-                <option value="4">Alimentos</option>
-                <option value="5">Esportes</option>
-                <option value="6">Livros</option>
-                <option value="7">Bebidas</option>
-                <option value="8">Automóveis</option>
-                <option value="9">Brinquedos</option>
-                <option value="10">Jóias</option>
-            </select><br><br>
+                    <div class="input_date">
+                        <label for="datafabricacao">Data de Fabricação:</label>
+                        <input type="date" id="datafabricacao" name="datafabricacao" required><br><br>
+                    </div>
+                </div>
 
-            <label for="imagem">Imagem:</label>
-            <input type="file" name="imagem" accept="image/*" required><br><br>
-            <div class="imagem-preview"></div><br><br>
+                <div class="box_right">
+                    <div class="input_quanti">
+                        <label for="quantidadeestoque">Quantidade:</label>
+                        <input type="number" id="quantidadeestoque" name="quantidadeestoque" step="0.01" placeholder="0" required><br><br>
+                    </div>
 
-            <input class="button" type="submit" value="Registrar Produto">
+                    <label for="id_categoria" >Categoria:</label>
+                    <select class="input_cat" id="id_categoria" name="id_categoria" required>
+                        <option value="">escolha uma categoria</option>
+                        <option value="1">Eletrônicos</option>
+                        <option value="2">Roupas</option>
+                        <option value="3">Móveis</option>
+                        <option value="4">Alimentos</option>
+                        <option value="5">Esportes</option>
+                        <option value="6">Livros</option>
+                        <option value="7">Bebidas</option>
+                        <option value="8">Automóveis</option>
+                        <option value="9">Brinquedos</option>
+                        <option value="10">Jóias</option>
+                    </select><br><br>
+                </div>
+            </div>
+
+            <div class="input_box">
+                <label for="imagem">Imagem:</label>
+                <input type="file" name="imagem" accept="image/*" required><br><br>
+            </div>
+                <div class="imagem-preview"></div><br><br>
+
+            <button class="button" type="submit">Registrar Produto</button>
         </form>
     </nav>
 

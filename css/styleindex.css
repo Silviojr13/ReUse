@@ -297,3 +297,136 @@ body{
 .dropdown a:hover {
     background-color: #f1f1f1;
 }
+
+
+/* css dos cards a baixo */
+
+.container-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.card-produto{
+    width: 250px;
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px 0 #0000002d;
+    margin: 20px 10px;
+    background:linear-gradient(180deg, #d57d67 0%, rgba(237, 46, 0, 0.10) 100%);
+}
+
+.card-prod-imagem{
+    width: 100%;
+    height: 50%;
+    border-radius: 15px;
+    background-color: #C4C4C4;
+    overflow: hidden;  
+}
+
+.card-prod-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.card-prod-titulo{
+    height: 10%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card-prod-periodo{
+    height: 10%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card-prod-valor{
+    height: 10%;
+    padding-left: 10px;
+}
+
+.card-prod-add{
+    height: 16.5%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.card-prod-add button{
+    padding: 10px 40px 10px 15px;
+    border-radius: 100px;
+    border: none;
+    background-color: #FDFBFB;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 5px 0 #11101012;
+    margin-right: 10px;
+}
+
+.card-prod-add i{
+    padding: 8px;
+    background-color: #ff5500;
+    color: #FDFBFB;
+    border-radius: 100px;
+    position: absolute;
+    right: 3px;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.carrinho-titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.carrinho-titulo-text {
+    width: 260px;
+    height: 40px;
+    border-radius: 9px;
+    background: #FFE0D8;
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+}
+
+.button-finalizar-compra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button-finalizar-compra a {
+    position: fixed;
+    bottom: 3%;
+    right: 5%;
+    width: 150px;
+    height: 35px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    background-color: #ff5500;
+    ;
+    text-decoration: none;
+    color: white;
+}
+
+
+/* Fim do estilo dos cards */
