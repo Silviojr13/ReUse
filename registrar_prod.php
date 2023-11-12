@@ -1,4 +1,9 @@
 <?php
+
+$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : 'Usuário';
+
+?>
+<?php
 include_once 'conexao.php';
 
 $id_estoque = $_GET['id_estoque'] ?? null;
@@ -41,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Produto registrado com sucesso!');</script>";
         } else {
             echo "<script>alert(1Erro ao registrar o produto:" . mysqli_error($conn)."');</script>";
+            header("Location: registrar_prod.php?nome_usuario=".$nomeUsuario);
         }
     }
 }
@@ -48,11 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Feche a conexão com o banco de dados
 mysqli_close($conn);
 ?>
-<?php
 
-$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : 'Usuário';
-
-?>
 <!DOCTYPE html>
 
 <!-- Começo da tela de registro de produtos -->
