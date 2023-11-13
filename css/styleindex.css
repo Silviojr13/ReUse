@@ -31,8 +31,8 @@ body{
     position: relative;
     width: 56px;
     height: 45px;
-    margin-left: 256px;
-    margin-right: 30px;
+
+
 }
 
 .option {
@@ -43,41 +43,55 @@ body{
 }
 
 .leftheader1 {
+    position: absolute;
     display: flex;
     gap: 32px;
     align-items: center;
-    
+    justify-content: center;
+    left: 3%;
+    padding-top: 1%;
 }
 
 .rightheader1 {
     display: flex;
+    position: absolute;
     margin-left: 286px;
-    align-items: center; 
+    right: 3%; 
+    align-items: center;
+    justify-content: center;
+    padding-top: 1.8%;
 }
 
 .search {
     display: flex;
     background: #aaaaaa;
-    width: 175px;
-    height: 77px;
+    border-radius: 0px 24px 24px 0px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
 .lupa {
+    position: absolute;
     width: 24px;
     height: 24px;
-    margin-left: 32px;
-    margin-top: 26px;
+    top: 50%;
+    
+}
+.camp_search {
+    position: absolute;
+    max-width: 30px;
+    width: 100%;
+    right: 172%;
 }
 
-.pesquisar_text {
-    margin-top: 26px;
-    margin-left: 16px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    font-family: 'Roboto', sans-serif;
+.camp_search input {
+    width: 177px;
+    height: 30px;
+    border: none;
+    border-radius: 24px 0px 0px 24px;
+    background: #D9D9D9;
+    padding-left: 14px;
 }
 
 .carrinho {
@@ -269,15 +283,15 @@ body{
 }
 
 
-.dropdown {
-    display: none;
-    left: 87%;
-    top: 9%;
+.dropdown { 
     position: absolute;
+    display: none;
+    right: -1%;
+    top: 140%;
     background-color: #D9D9D9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 101;
 }
 
 .dropdown a {
@@ -312,7 +326,8 @@ body{
     width: 250px;
     height: 300px;
     border-radius: 15px;
-    box-shadow: 0 5px 15px 0 #0000002d;
+    
+    box-shadow: 7px 7px 15px 7px #0000002d;
     margin: 20px 10px;
     background-color: #83B271;
 }

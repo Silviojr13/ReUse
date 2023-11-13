@@ -1,12 +1,10 @@
 <?php
-
-$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : 'Usuário';
-
-?>
-<?php
+session_start();
 include_once 'conexao.php';
+include_once 'verifica.php';
 
-$id_estoque = $_GET['id_estoque'] ?? null;
+
+$id_estoque = 1;
 
 // Verifique se a conexão com o banco de dados foi estabelecida no arquivo 'conexao.php'
 if (!$conn) {
@@ -46,11 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Produto registrado com sucesso!');</script>";
         } else {
             echo "<script>alert(1Erro ao registrar o produto:" . mysqli_error($conn)."');</script>";
-            header("Location: registrar_prod.php?nome_usuario=".$nomeUsuario);
         }
     }
 }
-
+$sqlCategorias = "SELECT id_categoria, nome FROM categoria";
+$resultCategorias = mysqli_query($conn, $sqlCategorias);
+$categorias = mysqli_fetch_all($resultCategorias, MYSQLI_ASSOC);
 // Feche a conexão com o banco de dados
 mysqli_close($conn);
 ?>
@@ -77,7 +76,7 @@ mysqli_close($conn);
     
     <header class="header">
         <nav class="hed">
-            <a href="index.php?nome_usuario=<?php echo $nomeUsuario; ?>" class="voltar"><i class="uil uil-angle-left voltar"></i></a>
+            <a href="index.php" class="voltar"><i class="uil uil-angle-left voltar"></i></a>
             <img class="logo" src="svg/Group.svg" alt="">
             <h1 class="textum">Adicionar Produto</h1>
         </nav>
@@ -87,7 +86,7 @@ mysqli_close($conn);
 
     
     <nav class="formulario">
-        <form class="form" method="POST">
+        <form class="form" method="POST" enctype="multipart/form-data">
             <!-- Adicione o atributo enctype para permitir o envio de arquivos -->
             <div class="box">
                 <div class="box_left">
@@ -120,19 +119,15 @@ mysqli_close($conn);
                         <input type="number" id="quantidadeestoque" name="quantidadeestoque" step="0.01" placeholder="0" required><br><br>
                     </div>
 
-                    <label for="id_categoria" >Categoria:</label>
+                    <label for="id_categoria">Categoria:</label>
                     <select class="input_cat" id="id_categoria" name="id_categoria" required>
-                        <option value="">escolha uma categoria</option>
-                        <option value="1">Eletrônicos</option>
-                        <option value="2">Roupas</option>
-                        <option value="3">Móveis</option>
-                        <option value="4">Alimentos</option>
-                        <option value="5">Esportes</option>
-                        <option value="6">Livros</option>
-                        <option value="7">Bebidas</option>
-                        <option value="8">Automóveis</option>
-                        <option value="9">Brinquedos</option>
-                        <option value="10">Jóias</option>
+                        <option value="">Escolha uma categoria</option>
+                        <?php
+                        // Iterar sobre as categorias e criar as opções
+                        foreach ($categorias as $categoria) {
+                            echo '<option value="' . $categoria['id_categoria'] . '">' . htmlspecialchars($categoria['nome']) . '</option>';
+                        }
+                        ?>
                     </select><br><br>
                 </div>
             </div>

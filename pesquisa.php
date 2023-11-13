@@ -7,8 +7,11 @@ if (!$conn) {
     die("Conexão falhou: " . mysqli_connect_error());
 }
 
-// Consulta SQL para obter os dados da tabela "produto"
-$sql = "SELECT id_produto, nome, caminhoimagem, preco, datafabricacao FROM produto";
+// Obtenha o nome do produto da query string
+$nomeProduto = isset($_GET['nome']) ? $_GET['nome'] : '';
+
+// Consulta SQL para obter os dados filtrados pelo nome do produto
+$sql = "SELECT id_produto, nome, caminhoimagem, preco, datafabricacao FROM produto WHERE nome LIKE '%$nomeProduto%'";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {

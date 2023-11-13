@@ -178,6 +178,11 @@ CREATE TABLE reuse (
   endereco VARCHAR(255)
 );
 
+CREATE TABLE carrinho (
+	id_carrinho INT PRIMARY KEY AUTO_INCREMENT,
+    id_produto INT,
+    id_usuario INT
+);
 
  -- ------------------------------------------------------------------------------------------------------
  

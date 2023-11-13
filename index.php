@@ -1,8 +1,13 @@
 <?php
-// Obtém o nome do usuário da URL
-$nomeUsuario = isset($_GET['nome_usuario']) ? $_GET['nome_usuario'] : null;
+include_once 'conexao.php';
+session_start();
 
-$nome = $nomeUsuario;
+// Verifica se o id_usuario está na sessão
+if (isset($_SESSION['id_usuario'])) {
+$id_usuario = $_SESSION['id_usuario'];
+$nome_usuario = $_SESSION['nome_usuario'];
+$id_perfil = $_SESSION['id_perfil'];
+} 
 ?>
 <html lang="en">
 <head>
@@ -15,23 +20,39 @@ $nome = $nomeUsuario;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script defer src="js/script.js"></script>
 </head>
 <body>
     <header class="header1">
         
         <div class="leftheader1">
             <img class="logo" src="svg/LogoReUse1.svg" alt="">
-            <p class="option">Início</p>            
-            <p class="option">inicio</p>            
-            <p class="option">inicio</p>            
-            <a href="registrar_prod.php?id_estoque=1&nome_usuario=<?php echo $nome; ?>" class="a opition"><p>registrar produto</p></a>            
+            <p class="option"></p> 
+            <?php
+                if (isset($id_perfil)) {
+                     // Verifica o valor de $id_perfil
+                    if ($id_perfil == 1) {
+                        echo '<a href="carrinho.php" class="a option"><p>Carrinho</p></a>';
+                        echo '<a href="registrar_prod.php" class="a option"><p>registrar produto</p></a>';
+                    }
+                }
+            ?>     
+                      
+                        
         </div>
         <div class="rightheader1">
-            <div class="search">
-                <img class="lupa" src="svg/material-symbols_search.svg" alt="">
-                <p class="pesquisar_text">Pesquisar</p>
+            <div class="pesq">
+                <div id="searchInputContainer" class="camp_search" >
+                    <input type="text" id="searchInput" placeholder="Digite sua pesquisa">
+                    
+                </div>
+                <div class="search">
+                    <img class="lupa" src="svg/material-symbols_search.svg" alt="">
+                </div>
             </div>
-            <a id="carrinho"><img class="carrinho" src="svg/mdi_cart-outline.svg" alt=""></a>
+            <!-- Adicione o campo de pesquisa oculto -->
+            
+            <a href="carrinho.php"><img class="carrinho" src="svg/mdi_cart-outline.svg" alt=""></a>
 
 
 
@@ -40,15 +61,16 @@ $nome = $nomeUsuario;
             <!--icone de usuario-->
             <div class="log_user">
                     <?php
-                        if ($nomeUsuario) {
+                        if (isset($_SESSION['nome_usuario'])) {
 
                             echo '  <a href="javascript:void(0);" id="dropdownButton" class="log_text">
-                                        <img src="svg/mdi_user.svg" alt="" class="user">' . htmlspecialchars($nomeUsuario) . '
+                                        <img src="svg/mdi_user.svg" alt="" class="user">' . htmlspecialchars($nome_usuario) . '
                                     </a>';
 
                         } else {
                             // Caso não haja nome de usuário na URL, exibe "Fazer login"
-                            echo '<a href="login.php" class="log_text">
+                            
+                            echo '<i id="dropdownButton"></i><a href="login.php" class="log_text"  >
                                       <img src="svg/mdi_user.svg" alt="" class="user">Fazer Login
                                   </a>';
                         }
@@ -132,6 +154,6 @@ $nome = $nomeUsuario;
 
 <!-- import script -->
 
-    <script src="js/script.js"></script>
+    
 </body>
 </html> 

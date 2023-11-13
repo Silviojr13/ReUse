@@ -44,8 +44,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($senha, $usuario['senha_usuario'])) {
             // Login bem-sucedido
             echo "Login bem-sucedido!";
-            // Você pode redirecionar para outra página se desejar
-            header("Location: index.php?nome_usuario=" . urlencode($usuario['nome_usuario']));
+            
+            // Inicia a sessão
+            session_start();
+        
+            // Armazena os dados na sessão
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
+            $_SESSION['nome_usuario'] = $usuario['nome_usuario'];
+            $_SESSION['id_perfil'] = $usuario['id_perfil'];
+            
+            
+        
+            // Redireciona para index.php
+            header("Location: index.php");
         } else {
             // Senha incorreta
             $erro = "Login falhou. Verifique suas credenciais.";
@@ -88,7 +99,7 @@ $conn->close();
         <div class="box">
             <div class="box2">
                 <div class="line1">
-                    <a href="index.html"><img src="svg/ep_arrow-up.svg" alt=""></a>
+                    <a href="index.php"><img src="svg/ep_arrow-up.svg" alt=""></a>
                     <img src="svg/Logo1.svg" alt="">
                 </div>
 
@@ -134,7 +145,7 @@ $conn->close();
                         <a href="registro.php"><p class="rga">Registre agora</p></a>
                     </div>
 
-                    <a href="index.html"><p class="voltar">Voltar para página inicial</p></a>
+                    <a href="index.php"><p class="voltar">Voltar para página inicial</p></a>
                 </div>
             </div>
         </div>

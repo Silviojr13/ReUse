@@ -1,3 +1,41 @@
+/* Cards no carrinho do cliente respectivo */
+
+window.onload = async function () {
+    var card = await fetch ("card_carrinho.php", {
+        method: "GET"
+    });
+
+    var dados = await card.json();
+
+    for (var i = 0; i < dados.length; i++){
+        var conteudo =
+        `<section class="container-cards">
+
+            <div class="card-produto">
+                <div class="card-prod-imagem">
+                    <img src="${dados[i].caminhoimagem}">
+                </div>
+                <br>
+                <div class="card-prod-titulo">
+                    ${dados[i].nome}
+                </div>
+                <!--<div class="card-prod-periodo">${dados[i].periodo}</div>-->
+                <div class="card-prod-valor">R$${dados[i].preco}</div>
+                <div class="card-prod-add">
+                    <button onclick="adicionarProduto(${dados[i].id_produto})" data-id-cards="${dados[i].id_produto}">Adicionar
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>`;
+
+        document.getElementById('cards').innerHTML += conteudo; // atualiza no html
+
+    }
+}  
+
+
 // REMOVE OS PRODUTOS DO CARRINHO
 
 async function removerProduto(idCarrinho) {

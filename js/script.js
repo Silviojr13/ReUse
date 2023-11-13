@@ -1,9 +1,7 @@
-//- - - - - - - - - - - - - - -  - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// código responsavel por conduzir o carrocel em index.html
-
-const manualButtons = document.querySelectorAll(".manual-btn"); // Selecione os botões usando a classe correspondente
-const delayBetweenClicks = 5000; // Tempo em milissegundos entre os cliques (1 segundo neste exemplo)
-const delayBeforeLooping = 1000; // Tempo em milissegundos antes de retornar ao primeiro botão (5 segundos neste exemplo)
+// Código responsável por conduzir o carrossel em index.html
+const manualButtons = document.querySelectorAll(".manual-btn");
+const delayBetweenClicks = 5000;
+const delayBeforeLooping = 1000;
 let currentIndex = 0;
 
 function clickSequentially() {
@@ -21,74 +19,95 @@ function clickSequentially() {
 // Chame a função para iniciar os cliques sequenciais em loop
 clickSequentially();
 
-
-
-document.getElementById('carrinho').addEventListener('click', function() {
-    var sidebar = document.createElement('div');
-    sidebar.style.position = 'fixed';
-    sidebar.style.width = '300px';
-    sidebar.style.height = '100%';
-    sidebar.style.top = '0';
-    sidebar.style.right = '0';
-    sidebar.style.backgroundColor = 'grey';
-    sidebar.style.padding = '20px';
-    sidebar.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
-
-    var header = document.createElement('h2');
-    header.textContent = 'Seu Carrinho';
-    header.style.marginBottom = '20px';
-
-    var closeButton = document.createElement('button');
-    closeButton.textContent = 'Fechar';
-    closeButton.style.position = 'absolute';
-    closeButton.style.top = '20px';
-    closeButton.style.right = '20px';
-    closeButton.style.backgroundColor = '#f44336';
-    closeButton.style.color = '#fff';
-    closeButton.style.border = 'none';
-    closeButton.style.padding = '5px 10px';
-    closeButton.style.borderRadius = '50%';
-    closeButton.style.cursor = 'pointer';
-    closeButton.addEventListener('click', function() {
-        document.body.removeChild(sidebar);
-    });
-
-    sidebar.appendChild(header);
-    sidebar.appendChild(closeButton);
-    document.body.appendChild(sidebar);
-});
-
-//- - - - - - - - - - - - - - -  - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// chama o get do usuario de index.php para index.html
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Seleciona o elemento onde deseja inserir os dados do usuário
-    var userInfoDiv = document.getElementById("user-info");
-
-    // Obtém o nome do usuário da URL
-    var urlParams = new URLSearchParams(window.location.search); 
-    var nomeUsuario = urlParams.get("nome_usuario");
-
-    if (nomeUsuario) {
-        // Exibe o nome do usuário com estilos inline
-        userInfoDiv.innerHTML = '<img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" style="color: inherit; text-decoration: none;">' + nomeUsuario + '</p>';
-    } else {
-        // Caso não haja nome de usuário na URL, exibe "Fazer login"
-        userInfoDiv.innerHTML = '<a href="login.php"><img src="svg/mdi_user.svg" alt="" class="user"><p class="log_text" style="color: inherit; text-decoration: none;">Fazer login</p></a>';
+document.getElementById("searchInput").addEventListener("keyup", function (event) {
+    // Verifica se a tecla pressionada é a tecla Enter (código 13)
+    if (event.keyCode === 13) {
+        realizarPesquisa();
     }
 });
 
+document.querySelector('.search').addEventListener('click', realizarPesquisa);
+
+// ...
+
+async function realizarPesquisa() {
+    const searchInputContainer = document.getElementById("searchInputContainer");
+    const slider = document.querySelector('.slider');
+
+    // Verifica se a pesquisa já está em andamento
+    if (searchInputContainer.classList.contains('searching')) {
+        return;
+    }
+
+    // Adiciona uma classe para indicar que a pesquisa está em andamento
+    searchInputContainer.classList.add('searching');
+
+    // Toggle a visibilidade do campo de pesquisa e do carrossel
+    if (searchInputContainer.style.display === "block") {
+        // Se o campo de pesquisa estiver visível, execute a pesquisa
+        const nomeProduto = document.getElementById("searchInput").value;
+        await buscarProdutosPorNome(nomeProduto);
+
+        // Agora, remova a classe de pesquisa em andamento
+        searchInputContainer.classList.remove('searching');
+
+        // Em seguida, esconda o carrossel
+        slider.style.display = "none";
+    } else {
+        // Se o campo de pesquisa estiver oculto, mostre-o e o carrossel
+        searchInputContainer.style.display = "block";
+        slider.style.display = "block";
+
+        // Agora, remova a classe de pesquisa em andamento
+        searchInputContainer.classList.remove('searching');
+    }
+
+    // Limpe o valor de pesquisa
+    document.getElementById("searchInput").value = "";
+}
+
+// ...
 
 
+async function buscarProdutosPorNome(nomeProduto) {
+    const card = await fetch(`pesquisa.php?nome=${nomeProduto}`, { method: "GET" });
+    const dados = await card.json();
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------
-//script para logout
+    // Adicione os novos cards com base nos resultados da pesquisa
+    const cardsContainer = document.getElementById('cards');
+    cardsContainer.innerHTML = ""; // Limpar cards existentes
 
-// Obtenha referências aos elementos do botão e do dropdown
+    for (const dado of dados) {
+        const conteudo = `
+            <section class="container-cards">
+                <div class="card-produto">
+                    <div class="card-prod-imagem">
+                        <img src="${dado.caminhoimagem}">
+                    </div>
+                    <br>
+                    <div class="card-prod-titulo">${dado.nome}</div>
+                    <div class="card-prod-valor">R$${dado.preco}</div>
+                    <div class="card-prod-add">
+                        <button onclick="adicionarProduto(${dado.id_produto})" data-id-cards="${dado.id_produto}">
+                            Adicionar <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>`;
+
+        cardsContainer.innerHTML += conteudo;
+    }
+}
+
+// Carregar todos os produtos inicialmente
+window.onload = async function () {
+    await buscarProdutosPorNome("");
+}
+
+// Script para logout
 var dropdownButton = document.getElementById('dropdownButton');
 var dropdown = document.getElementById('myDropdown');
 
-// Adicione um ouvinte de evento ao botão para alternar a exibição do dropdown
 dropdownButton.addEventListener('click', function() {
     if (dropdown.style.display === 'block') {
         dropdown.style.display = 'none';
@@ -97,75 +116,25 @@ dropdownButton.addEventListener('click', function() {
     }
 });
 
-// Feche o dropdown se o usuário clicar fora dele
 window.addEventListener('click', function(event) {
     if (event.target !== dropdownButton) {
         dropdown.style.display = 'none';
     }
 });
 
-/* Cards dos produtos registrados */
-
-
-
-window.onload = async function () {
-    var card = await fetch ("card.php", {
-        method: "GET"
-    });
-
-    var dados = await card.json();
-
-    for (var i = 0; i < dados.length; i++){
-        var conteudo =
-        `<section class="container-cards">
-
-            <div class="card-produto">
-                <div class="card-prod-imagem">
-                    <img src="${dados[i].caminhoimagem}">
-                </div>
-                <div class="card-prod-titulo">
-                    ${dados[i].descricao}
-                </div>
-                <!--<div class="card-prod-periodo">${dados[i].periodo}</div>-->
-                <div class="card-prod-valor">R$${dados[i].preco}</div>
-                <div class="card-prod-add">
-                    <button onclick="adicionarProduto(${dados[i].id_cards})" data-id-cards="${dados[i].id_cards}">Adicionar
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                </div>
-            </div>
-
-        </section>`;
-
-        document.getElementById('cards').innerHTML += conteudo; // atualiza no html
-
-    }
-}  
-
-
-
-/* Carrinho a baixo */
-
-// ADICIONA OS PRODUTOS NO CARRINHO
-
+// Adiciona os produtos no carrinho
 async function adicionarProduto(idCards) {
-    // Define o idEstudante com o valor desejado, por exemplo, 1.
-    var idCliente = 1;
-
-    // Envia uma solicitação para o servidor para inserir o card no carrinho.
     var response = await fetch("adicionar_ao_carrinho.php", {
         method: "POST",
-        body: JSON.stringify({ id_cards: idCards, id_cliente: idCliente }),
+        body: JSON.stringify({ id_produto: idCards }),
         headers: {
             "Content-Type": "application/json"
         }
     });
 
     if (response.status === 200) {
-        // Atualize a interface do usuário para refletir a adição ao carrinho, se necessário.
         alert("Card adicionado ao carrinho com sucesso!");
     } else {
         alert("Falha ao adicionar o card ao carrinho.");
     }
 }
-

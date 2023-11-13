@@ -1,6 +1,9 @@
 <?php
 // Inclua o arquivo de conexão com o banco de dados
 include_once 'conexao.php';
+session_start();
+
+$id_usuario = $_SESSION['id_usuario'];
 
 // Verifique se a conexão com o banco de dados foi estabelecida no arquivo 'conexao.php'
 if (!$conn) {
@@ -8,7 +11,11 @@ if (!$conn) {
 }
 
 // Consulta SQL para obter os dados da tabela "produto"
-$sql = "SELECT id_produto, nome, caminhoimagem, preco, datafabricacao FROM produto";
+$sql = "SELECT P.* 
+        FROM produto P
+        INNER JOIN carrinho C ON C.id_produto = P.id_produto
+        WHERE id_usuario = $id_usuario";
+
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
