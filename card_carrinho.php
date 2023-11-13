@@ -11,7 +11,7 @@ if (!$conn) {
 }
 
 // Consulta SQL para obter os dados da tabela "produto"
-$sql = "SELECT P.* 
+$sql = "SELECT P.*, C.*
         FROM produto P
         INNER JOIN carrinho C ON C.id_produto = P.id_produto
         WHERE id_usuario = $id_usuario";

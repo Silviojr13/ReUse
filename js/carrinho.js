@@ -1,6 +1,6 @@
 /* Cards no carrinho do cliente respectivo */
 
-async function buscarProdutosPorNome(nomeProduto) {
+async function buscarProdutosPorNome() {
     const card = await fetch(`card_carrinho.php`, { method: "GET" });
     const dados = await card.json();
 
@@ -19,8 +19,8 @@ async function buscarProdutosPorNome(nomeProduto) {
                     <div class="card-prod-titulo">${dado.nome}</div><br>
                     <div class="card-prod-valor"><p>R$ ${dado.preco}</p></div>
                     <div class="card-prod-add">
-                        <button onclick="adicionarProduto(${dado.id_produto})" data-id-cards="${dado.id_produto}">
-                            Adicionar <img class="car" src="svg/mdi_cart-outline.svg" alt="">
+                        <button onclick="removerProduto(${dado.id_carrinho})" data-id-cards="${dado.id_carrinho}">
+                            Excluir 
                         </button>
                     </div>
                 </div>
@@ -29,18 +29,16 @@ async function buscarProdutosPorNome(nomeProduto) {
         cardsContainer.innerHTML += conteudo;
     }
 }
-buscarProdutosPorNome();
+
 
 // REMOVE OS PRODUTOS DO CARRINHO
 
 async function removerProduto(idCarrinho) {
-    // Define o idEstudante com o valor desejado, por exemplo, 1.
-    var idCliente = 1;
 
     // Envia uma solicitação para o servidor para remover o item do carrinho com base no id_carrinho.
     var response = await fetch("remover_do_carrinho.php", {
         method: "POST",
-        body: JSON.stringify({ id_carrinho: idCarrinho, id_cliente: idCliente }),
+        body: JSON.stringify({ id_carrinho: idCarrinho}),
         headers: {
             "Content-Type": "application/json"
         }
@@ -48,6 +46,7 @@ async function removerProduto(idCarrinho) {
 
     if (response.status === 200) {
         // Remoção bem-sucedida, recarrega a página.
+        alert("removido com sucesso.");
         location.reload();
     } else {
         alert("Falha ao remover o item do carrinho.");
@@ -56,7 +55,7 @@ async function removerProduto(idCarrinho) {
 
 //---------------------------------------------------------------------------------------------------------------
 // mostra a quantidade de itens no carrinho
-
+/*  
 function obterQuantidadeNoCarrinho() {
     fetch('qnt_carrinho.php')
         .then(response => response.json())
@@ -83,4 +82,6 @@ function obterTotalCarrinho() {
 }
 
 // Chama a função para obter o valor total
-obterTotalCarrinho();   
+obterTotalCarrinho();  */ 
+
+buscarProdutosPorNome();

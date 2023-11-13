@@ -7,22 +7,21 @@
 
     if ($data) {
         $id_carrinho = $data->id_carrinho;
-        $id_cliente = $data->id_cliente;
 
         // Executa a remoção do card da tabela 'carrinho'.
-        $sql = "DELETE FROM carrinho WHERE id_carrinho = $id_carrinho AND id_cliente = 1";
+        $sql = "DELETE FROM carrinho WHERE id_carrinho = $id_carrinho";
 
-        if ($conexao->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE) {
             // Remoção bem-sucedida.
             http_response_code(200);
             echo json_encode(array("message" => "Card removido do carrinho com sucesso!"));
         } else {
             // Falha na remoção.
             http_response_code(500);
-            echo json_encode(array("message" => "Falha ao remover o card do carrinho: " . $conexao->error));
+            echo json_encode(array("message" => "Falha ao remover o card do carrinho: " . $conn->error));
         }
 
-        $conexao->close();
+        $conn->close();
     } else {
         // Dados inválidos na solicitação.
         http_response_code(400);
