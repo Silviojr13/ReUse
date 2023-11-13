@@ -1,40 +1,35 @@
 /* Cards no carrinho do cliente respectivo */
 
-window.onload = async function () {
-    var card = await fetch ("card_carrinho.php", {
-        method: "GET"
-    });
+async function buscarProdutosPorNome(nomeProduto) {
+    const card = await fetch(`card_carrinho.php`, { method: "GET" });
+    const dados = await card.json();
 
-    var dados = await card.json();
+    // Adicione os novos cards com base nos resultados da pesquisa
+    const cardsContainer = document.getElementById('cards');
+    cardsContainer.innerHTML = ""; // Limpar cards existentes
 
-    for (var i = 0; i < dados.length; i++){
-        var conteudo =
-        `<section class="container-cards">
-
-            <div class="card-produto">
-                <div class="card-prod-imagem">
-                    <img src="${dados[i].caminhoimagem}">
+    for (const dado of dados) {
+        const conteudo = `
+            <section class="container-cards">
+                <div class="card-produto">
+                    <div class="card-prod-imagem">
+                        <img src="${dado.caminhoimagem}">
+                    </div>
+                    
+                    <div class="card-prod-titulo">${dado.nome}</div><br>
+                    <div class="card-prod-valor"><p>R$ ${dado.preco}</p></div>
+                    <div class="card-prod-add">
+                        <button onclick="adicionarProduto(${dado.id_produto})" data-id-cards="${dado.id_produto}">
+                            Adicionar <img class="car" src="svg/mdi_cart-outline.svg" alt="">
+                        </button>
+                    </div>
                 </div>
-                <br>
-                <div class="card-prod-titulo">
-                    ${dados[i].nome}
-                </div>
-                <!--<div class="card-prod-periodo">${dados[i].periodo}</div>-->
-                <div class="card-prod-valor">R$${dados[i].preco}</div>
-                <div class="card-prod-add">
-                    <button onclick="adicionarProduto(${dados[i].id_produto})" data-id-cards="${dados[i].id_produto}">Adicionar
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                </div>
-            </div>
+            </section>`;
 
-        </section>`;
-
-        document.getElementById('cards').innerHTML += conteudo; // atualiza no html
-
+        cardsContainer.innerHTML += conteudo;
     }
-}  
-
+}
+buscarProdutosPorNome();
 
 // REMOVE OS PRODUTOS DO CARRINHO
 

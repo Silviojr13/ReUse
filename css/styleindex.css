@@ -35,11 +35,15 @@ body{
 
 }
 
-.option {
+.option{
     display: flex;
     display: inline;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+}
+
+.option:hover {
+    color: gray;
 }
 
 .leftheader1 {
@@ -61,28 +65,37 @@ body{
     justify-content: center;
     padding-top: 1.8%;
 }
+.pesq {
+    position: relative;
+    display: flex;
+    width: 54px;
+    right: 70%;
+    z-index: 104;
+    align-items: center;
+    justify-content: space-between;
+}
 
 .search {
     display: flex;
-    background: #aaaaaa;
-    border-radius: 0px 24px 24px 0px;
+    position: absolute;
     width: 30px;
     height: 30px;
+    background: #aaaaaa;
+    border-radius: 0px 24px 24px 0px;
     cursor: pointer;
+    margin-left: 328%;
 }
 
 .lupa {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 50%;
-    
+    width: 20px;
+    height: 20px;
+    margin-top: 15%;
+    margin-left: 13%;
 }
 .camp_search {
-    position: absolute;
     max-width: 30px;
     width: 100%;
-    right: 172%;
+   
 }
 
 .camp_search input {
@@ -92,6 +105,7 @@ body{
     border-radius: 24px 0px 0px 24px;
     background: #D9D9D9;
     padding-left: 14px;
+    left: 0%;
 }
 
 .carrinho {
@@ -118,6 +132,9 @@ body{
     line-height: 24px;
     text-decoration: none;
     color: #000;
+}
+.log_text:hover {
+    color: gray;
 }
 
 .log_text img {
@@ -157,6 +174,10 @@ body{
     font-weight: 600;
 }
 
+
+.opmenu:hover{
+    color: #d3d2d2;
+}
 
 .retangle {
     margin-top: 40px;
@@ -351,6 +372,7 @@ body{
     padding-left: 10px;
     display: flex;
     align-items: center;
+    margin-top: 2%;
 }
 
 .card-prod-periodo{
@@ -393,6 +415,12 @@ body{
     border-radius: 100px;
     position: absolute;
     right: 3px;
+}
+.car {
+    position: absolute;
+    margin-left: 55%;
+    width: 20px;
+    height: 20px;
 }
 
 #cards {

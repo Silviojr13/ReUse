@@ -35,12 +35,17 @@ $id_perfil = $_SESSION['id_perfil'];
                         echo '<a href="carrinho.php" class="a option"><p>Carrinho</p></a>';
                         echo '<a href="registrar_prod.php" class="a option"><p>registrar produto</p></a>';
                     }
+                    if ($id_perfil == 4) {
+                        echo '<a href="carrinho.php" class="a option"><p>Carrinho</p></a>';
+                    }
                 }
             ?>     
                       
                         
         </div>
         <div class="rightheader1">
+            <!-- input pesquisa -->
+
             <div class="pesq">
                 <div id="searchInputContainer" class="camp_search" >
                     <input type="text" id="searchInput" placeholder="Digite sua pesquisa">
@@ -50,6 +55,7 @@ $id_perfil = $_SESSION['id_perfil'];
                     <img class="lupa" src="svg/material-symbols_search.svg" alt="">
                 </div>
             </div>
+
             <!-- Adicione o campo de pesquisa oculto -->
             
             <a href="carrinho.php"><img class="carrinho" src="svg/mdi_cart-outline.svg" alt=""></a>
@@ -92,11 +98,11 @@ $id_perfil = $_SESSION['id_perfil'];
 
     <header class="header2">
         <div class="menu">
-            <p class="opmenu">DECORAÇÃO</p>
-            <p class="opmenu">MÓVEIS</p>
-            <p class="opmenu">MODA</p>
-            <p class="opmenu">COSMÉTICO</p>
-            <p class="opmenu">UTILIZÁVEIS</p>
+            <a href="eletronicos.php" class="a opmenu"><p>ELETRÔNICOS</p></a>
+            <a href="moveis.php" class="a opmenu"><p>MÓVEIS</p></a>
+            <a href="moda.php" class="a opmenu"><p>MODA</p></a>
+            <a href="cosmetico.php" class="a opmenu"><p>COSMÉTICO</p></a>
+            <a href="ultilizaveis.php" class="a opmenu"><p>UTILIZÁVEIS</p></a>
         </div>
     </header>
 
@@ -154,6 +160,6 @@ $id_perfil = $_SESSION['id_perfil'];
 
 <!-- import script -->
 
-    
+    <script defer src="js/script.js"></script>
 </body>
 </html> 

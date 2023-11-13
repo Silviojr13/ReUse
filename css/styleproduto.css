@@ -59,9 +59,6 @@ input:focus {
     line-height: 48px;
 }
 
-/* -------------------------------------------------------------------------------- */
-/* CSS dos cards a baixo */
-
 .container-cards{
     display: flex;
     flex-wrap: wrap;

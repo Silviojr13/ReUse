@@ -3,6 +3,7 @@ const manualButtons = document.querySelectorAll(".manual-btn");
 const delayBetweenClicks = 5000;
 const delayBeforeLooping = 1000;
 let currentIndex = 0;
+let carouselInterval; // Variável para armazenar o intervalo do carrossel
 
 function clickSequentially() {
     if (currentIndex < manualButtons.length) {
@@ -10,14 +11,18 @@ function clickSequentially() {
         currentIndex++;
     } else {
         currentIndex = 0;
-        setTimeout(clickSequentially, delayBeforeLooping);
-        return;
     }
-    setTimeout(clickSequentially, delayBetweenClicks);
+}
+
+// Função para iniciar o carrossel
+function startCarousel() {
+    carouselInterval = setInterval(() => {
+        clickSequentially();
+    }, delayBetweenClicks);
 }
 
 // Chame a função para iniciar os cliques sequenciais em loop
-clickSequentially();
+startCarousel();
 
 document.getElementById("searchInput").addEventListener("keyup", function (event) {
     // Verifica se a tecla pressionada é a tecla Enter (código 13)
@@ -42,6 +47,9 @@ async function realizarPesquisa() {
     // Adiciona uma classe para indicar que a pesquisa está em andamento
     searchInputContainer.classList.add('searching');
 
+    // Interrompe o carrossel durante a pesquisa
+    clearInterval(carouselInterval);
+
     // Toggle a visibilidade do campo de pesquisa e do carrossel
     if (searchInputContainer.style.display === "block") {
         // Se o campo de pesquisa estiver visível, execute a pesquisa
@@ -50,6 +58,9 @@ async function realizarPesquisa() {
 
         // Agora, remova a classe de pesquisa em andamento
         searchInputContainer.classList.remove('searching');
+
+        // Em seguida, reinicie o carrossel
+        startCarousel();
 
         // Em seguida, esconda o carrossel
         slider.style.display = "none";
@@ -60,6 +71,9 @@ async function realizarPesquisa() {
 
         // Agora, remova a classe de pesquisa em andamento
         searchInputContainer.classList.remove('searching');
+
+        // Em seguida, reinicie o carrossel
+        startCarousel();
     }
 
     // Limpe o valor de pesquisa
@@ -81,15 +95,15 @@ async function buscarProdutosPorNome(nomeProduto) {
         const conteudo = `
             <section class="container-cards">
                 <div class="card-produto">
-                    <div class="card-prod-imagem">
+                    <a href="produto.php"><div class="card-prod-imagem">
                         <img src="${dado.caminhoimagem}">
-                    </div>
-                    <br>
-                    <div class="card-prod-titulo">${dado.nome}</div>
-                    <div class="card-prod-valor">R$${dado.preco}</div>
+                    </div></a>
+                    
+                    <div class="card-prod-titulo">${dado.nome}</div><br>
+                    <div class="card-prod-valor"><p>R$ ${dado.preco}</p></div>
                     <div class="card-prod-add">
                         <button onclick="adicionarProduto(${dado.id_produto})" data-id-cards="${dado.id_produto}">
-                            Adicionar <i class="fa-solid fa-cart-shopping"></i>
+                            Adicionar <img class="car" src="svg/mdi_cart-outline.svg" alt="">
                         </button>
                     </div>
                 </div>
