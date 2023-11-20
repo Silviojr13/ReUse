@@ -83,14 +83,20 @@ $conn->close();
     <link rel="icon" type="image/svg+xml" href="svg/LogoReUse1.svg" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css">
     <style>
-        body {
-            position: relative;
-            height:100vh;
-            width:100%;
-            background-image: url('img/selva.jpg');
+        body::before {
+            content: "";
+            background-image: url('svg/image 3.svg');
             background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        body {
+            background-color: transparent; 
         }
     </style>
 </head>

@@ -1,13 +1,14 @@
 <?php
+    session_start();
     // arquivo de conexão
     include 'conexao.php';
 
-    // Recupera o ID do estudante desejado
-    $id_cliente = 1; 
+    // Recupera o ID do usuario desejado
+    $id_usuario = $_SESSION['id_usuario'];
 
-    // Execute a consulta para contar os itens no carrinho do estudante
-    $sql = "SELECT COUNT(*) AS quantidade FROM carrinho WHERE id_cliente = $id_cliente";
-    $result = $conexao->query($sql);
+    // Execute a consulta para contar os itens no carrinho do usuario
+    $sql = "SELECT COUNT(*) AS quantidade FROM carrinho WHERE id_usuario = $id_usuario";
+    $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -19,5 +20,5 @@
 
     echo json_encode($response);
 
-    $conexao->close();
+    $conn->close();
 ?>

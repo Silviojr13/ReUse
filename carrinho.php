@@ -35,6 +35,13 @@ $nome_usuario = $_SESSION['nome_usuario'];
         </nav>
     </header>
 
+    <div class="carrinho-titulo">
+            <div class="carrinho-titulo-text">SEU CARRINHO: "<span id="qtn"></span>" itens.</div>
+        </div>
+        <div class="carrinho-titulo">
+            <div class="carrinho-titulo-text">TOTAL: R$<span id="total"></span></div>
+    </div>
+
     <div id="cards"></div>
 
     <!-- scripts -->
