@@ -1,0 +1,12 @@
+tb: produto
+
+id_produto int AI PK 
+id_estoque int 
+id_categoria int 
+id_disponibilidade int 
+nome varchar(255) 
+descricao text 
+preco decimal(10,2) 
+quantidadeestoque int 
+datafabricacao date 
+caminhoimagem varchar(255)

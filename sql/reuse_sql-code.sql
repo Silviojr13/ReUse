@@ -494,3 +494,17 @@ WHERE ca.id_categoria = 1
 GROUP BY c.id_cliente
 ORDER BY total_compras DESC
 LIMIT 1;
+
+
+
+
+
+
+
+SELECT P.* 
+FROM produto P
+INNER JOIN carrinho C ON C.id_produto = P.id_produto
+WHERE id_usuario = 35;
+
+
+

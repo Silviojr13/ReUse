@@ -32,11 +32,8 @@ $id_perfil = $_SESSION['id_perfil'];
                 if (isset($id_perfil)) {
                      // Verifica o valor de $id_perfil
                     if ($id_perfil == 1) {
-                        echo '<a href="carrinho.php" class="a option"><p>Carrinho</p></a>';
                         echo '<a href="registrar_prod.php" class="a option"><p>registrar produto</p></a>';
-                    }
-                    if ($id_perfil == 4) {
-                        echo '<a href="carrinho.php" class="a option"><p>Carrinho</p></a>';
+                        echo '<a href="edit_prod.php" class="a option"><p>editar produto</p></a>';
                     }
                 }
             ?>     

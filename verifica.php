@@ -8,13 +8,10 @@ if (isset($_SESSION['id_usuario'])) {
 } else {
     // Usuário não está logado, emite o alerta
     echo '<script>
-            var resposta = confirm("Você precisa estar logado para acessar esta página. Deseja fazer login?");
+            var resposta = confirm("Você precisa estar logado para acessar esta página.");
             if (resposta) {
                 // Redireciona para a página de login
                 window.location.href = "login.php";
-            } else {
-                // Redireciona para a página de logout ou outra ação, se necessário
-                window.location.href = "logout.php";
             }
           </script>';
     exit(); // Termina a execução do script após o alerta
